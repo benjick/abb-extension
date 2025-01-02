@@ -1,0 +1,7 @@
+{
+  "version": { "license": "MIT" },
+  "categories": { "firefox": ["other"] },
+  "homepage": {
+    "en-US": "https://github.com/benjick/abb-extension"
+  }
+}

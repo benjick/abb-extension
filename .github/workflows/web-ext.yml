@@ -1,0 +1,50 @@
+name: web-ext
+on:
+  release:
+    types: [created]
+
+jobs:
+  web-ext:
+    name: Build and upload abb-extension
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.release.target_commitish }}
+
+      - name: Validate and extract release information
+        id: release
+        uses: manovotny/github-releases-for-automated-package-publishing-action@v1.0.0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "22"
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - run: pnpm build
+
+      - run: pnpm web-ext lint
+
+      - name: Build for Chrome
+        run: pnpm web-ext build
+
+      - name: Build and sign for Firefox
+        run: pnpm web-ext sign
+        env:
+          AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
+          AMO_JWT_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dist/artifacts/abb*extension-${{ steps.release.outputs.version }}*
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true

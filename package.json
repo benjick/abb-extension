@@ -1,0 +1,33 @@
+{
+  "name": "abb-extension",
+  "description": "Adds magnet links to audiobook bay",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "pnpm tsc && pnpm generate-manifest && pnpm bundle:prod",
+    "predev": "pnpm tsc && pnpm generate-manifest && pnpm bundle:dev",
+    "dev": "concurrently \"pnpm firefox\" \"pnpm watch\"",
+    "generate-manifest": "tsx manifest.ts",
+    "watch": "NODE_ENV=development tsc-watch --noClear --onSuccess \"pnpm bundle:dev\"",
+    "bundle:prod": "NODE_ENV=production rollup -c",
+    "bundle:dev": "NODE_ENV=development rollup -c",
+    "firefox": "web-ext run -t firefox-desktop",
+    "chromium": "web-ext run -t chromium"
+  },
+  "dependencies": {
+    "web-ext": "^8.3.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-replace": "^6.0.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "concurrently": "^9.1.2",
+    "dotenv": "^16.0.0",
+    "rollup": "^4.29.1",
+    "tsc-watch": "^6.2.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
