@@ -2,13 +2,16 @@
   "compilerOptions": {
     "strict": true,
     "outDir": "dist/js",
-    "module": "commonjs",
+    "module": "ES2020",
+    "target": "ES2019",
+    "lib": ["ES2019", "DOM", "DOM.Iterable"],
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
     "resolveJsonModule": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "moduleResolution": "node"
   },
   "include": ["src/"]
 }
