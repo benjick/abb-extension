@@ -2,12 +2,14 @@
 
 Adds magnet links to audiobook bay
 
+![Copy magnet link](.github/copy-magnet-link.gif)
+
 ## Installation
 
 ### Firefox 🚤
 
 1. Go to https://github.com/benjick/abb-extension/releases
-2. Click on the `abb_extension-XXX-an+fx.xpi` file
+2. Click on the `[id]-[version].xpi` file
 3. Click "Continue to Installation" in the popup followed by "Add"
 
 ## Development
