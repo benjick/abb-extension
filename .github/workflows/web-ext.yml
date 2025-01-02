@@ -3,6 +3,9 @@ on:
   release:
     types: [created]
 
+permissions:
+  contents: write
+
 jobs:
   web-ext:
     name: Build and upload abb-extension
