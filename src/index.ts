@@ -1,20 +1,23 @@
 class AbbExtension {
   public main() {
+    console.log("abb: starting...");
     const torrentInfo = this.getTorrentInfo();
-    console.log(torrentInfo);
+    console.log("abb:", torrentInfo);
     if (torrentInfo) {
       this.addCustomButton(torrentInfo.magnetLink);
     }
   }
 
   private getTorrentInfo() {
-    const torrentTable = document.querySelector("table.torrent_info");
+    const torrentTable = document.querySelector("table.torrent_infos");
     if (!torrentTable) {
+      console.warn("abb: Could not find torrent table");
       return null;
     }
 
     const title = document.querySelector("div.postTitle")?.textContent;
     if (!title) {
+      console.warn("abb: Could not find title");
       return null;
     }
 
@@ -30,7 +33,7 @@ class AbbExtension {
       }
 
       const textNodes = Array.from(td.childNodes).filter(
-        (node) => node.nodeType === Node.TEXT_NODE
+        (node) => node.nodeType === Node.TEXT_NODE,
       );
 
       textNodes.forEach((node) => {
@@ -43,10 +46,12 @@ class AbbExtension {
     }
 
     if (!links.length) {
+      console.warn("abb: Could not find any links");
       return null;
     }
 
     if (!infoHash) {
+      console.warn("abb: Could not find info hash");
       return null;
     }
 
@@ -63,7 +68,7 @@ class AbbExtension {
   private createMagnetLink(
     infoHash: string,
     trackers: string[],
-    title: string
+    title: string,
   ) {
     let magnetLink = `magnet:?xt=urn:btih:${infoHash}`;
     trackers.forEach((tracker) => {
