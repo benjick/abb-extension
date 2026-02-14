@@ -23,6 +23,7 @@
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-replace": "^6.0.2",
     "@rollup/plugin-terser": "^0.4.4",
+    "@types/node": "^25.2.3",
     "concurrently": "^9.1.2",
     "dotenv": "^16.0.0",
     "rollup": "^4.29.1",
