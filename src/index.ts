@@ -9,7 +9,7 @@ class AbbExtension {
   }
 
   private getTorrentInfo() {
-    const torrentTable = document.querySelector("table.torrent_infos");
+    const torrentTable = document.querySelector(".postContent table");
     if (!torrentTable) {
       console.warn("abb: Could not find torrent table");
       return null;
