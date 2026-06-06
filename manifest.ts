@@ -16,8 +16,7 @@ const manifest = {
       id: "abb-extension@benjick.se",
       strict_min_version: "58.0",
       data_collection_permissions: {
-        collectsTechnicalData: false,
-        collectsInteractionData: false,
+        required: ["none"],
       },
     },
   },
